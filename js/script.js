@@ -2,35 +2,24 @@ document.addEventListener('DOMContentLoaded', () => {
     'use strict'
 
     function pageInit() {
-        const footer = document.querySelector('.footer');
+        const localItems = getLocalStorage();
+        let startName = localItems.name;
+        let startCity = localItems.city;
 
         musicPlayer();
-        weatherInfo();
+        weatherInfo(startCity);
         clockOut();
         dateOut();
-        showGreeting();
-        getQuotes(footer);
+        showGreeting(startName);
+        getQuotes();
         listenerForBgChange();
 
+        window.addEventListener('beforeunload', saveLocalStorage);
     };
 
     pageInit();
 
-
-
-
-
-    // page music player
-    function showGreeting() {
-        const playListMusic = ['night', 'morning', 'day', 'evening'];
-
-        const player = document.querySelector('.player');
-    }
-
-
-
-
-
+    /* music block start */
     // page music player
     function musicPlayer() {
         const playListMusic = [
@@ -99,16 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const oldSrc = pagePlayer.getAttribute('src');
         const newSrc = playListMusic[activeSong].src;
 
-        if (oldSrc !== newSrc) {
-            pagePlayer.setAttribute('src', newSrc);
+        if (oldSrc !== newSrc) pagePlayer.setAttribute('src', newSrc);
 
-            pageListSongs.childNodes.forEach((element, ind) => {
-                ind === activeSong
-                    ? element.classList.add('item-active')
-                    : element.classList.remove('item-active');
-            });
-        }
-
+        pageListSongs.childNodes.forEach((element, ind) => {
+            ind === activeSong
+                ? element.classList.add('item-active')
+                : element.classList.remove('item-active');
+        });
         pagePlayer.play();
     }
 
@@ -146,12 +132,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         musicList.innerHTML = stringOut;
     }
+    /* music block end */
 
+
+    /* weather block start */
     // page weather info
-    async function weatherInfo() {
+    async function weatherInfo(startCity) {
         const weatherContainer = document.querySelector('.weather');
         const weatherInput = weatherContainer.querySelector('input[type="text"]');
-        let weatherInfo = await getWeatherForCity(weatherContainer, 'Brest');
+        weatherInput.value = startCity || 'Brest';
+        let weatherInfo = await getWeatherForCity(weatherContainer, weatherInput.value);
 
         drawWeather(weatherContainer, weatherInfo);
 
@@ -219,20 +209,33 @@ document.addEventListener('DOMContentLoaded', () => {
         wind.textContent = 'Wind speed: ' + Math.floor(data.wind.speed) + ' m/s';
         humidity.textContent = 'Humidity: ' + data.main.humidity + '%';
     }
+    /* weather block end */
 
-    // listener for slide button
-    function drawNewQuote(quotes, outParent) {
-        if (quotes === {}) return;
 
-        const quoteText = outParent.querySelector('.quote');
-        const authorQuote = outParent.querySelector('.author');
+    /* greeting block start */
+    // show greeting content
+    function showGreeting(startName) {
+        const dayParts = ['night', 'morning', 'day', 'evening'];
 
-        let s = Math.floor(Math.random() * (1642 - 0 + 1)) + 0;
+        const greetingContainer = document.querySelector('.greeting-container');
+        const greetingTextOut = greetingContainer.querySelector('.greeting');
+        const greetingInput = greetingContainer.querySelector('.name');
+        greetingInput.value = startName;
 
-        quoteText.textContent = quotes[s].text;
-        authorQuote.textContent = quotes[s].author;
+        drawGreeting(greetingTextOut, dayParts);
     }
 
+    // output greeting message
+    function drawGreeting(greetingTextOut, dayParts) {
+        let hours = new Date().getHours();
+        let dayPartNumber = Math.floor(hours / 6);
+
+        greetingTextOut.textContent = 'Good ' + dayParts[dayPartNumber] + ' ';
+    }
+    /* greeting block end */
+
+
+    /* time block start */
     // out current time
     function clockOut() {
         const watchOut = document.querySelector('.time');
@@ -255,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkDateValue(val) {
         return val > 9 ? val : '0' + val;
     }
+
     // out current date
     function dateOut() {
         const date = new Date();
@@ -266,7 +270,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dateOut.textContent = `${dayWeek}, ${month} ${day}`
     }
+    /* time block start */
 
+
+    /* slider block start */
     // listener for slide button
     function listenerForBgChange() {
         const body = document.querySelector('body');
@@ -297,6 +304,22 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.backgroundImage = `url(./assets/img/${bgImgs})`;
         body.style.backgroundSize = 'cover';
     }
+    /* slider block end */
+
+
+    /* quotes block start */
+    // listener for slide button
+    function drawNewQuote(quotes, outParent) {
+        if (quotes === {}) return;
+
+        const quoteText = outParent.querySelector('.quote');
+        const authorQuote = outParent.querySelector('.author');
+
+        let s = Math.floor(Math.random() * (1642 - 0 + 1)) + 0;
+
+        quoteText.textContent = quotes[s].text;
+        authorQuote.textContent = quotes[s].author;
+    }
 
     // listener for btn to change quote
     function listenerQuotesBtn(data, footer) {
@@ -308,7 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // get obgect with quotes
-    function getQuotes(footer) {
+    function getQuotes() {
+        const footer = document.querySelector('.footer');
+
         fetch('https://type.fit/api/quotes')
             .then(data => data.json())
             .then(data => {
@@ -319,4 +344,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(error)
             });
     }
+    /* quotes block end */
+
+
+    /* local storage block start */
+    // save variables in local storage
+    function saveLocalStorage() {
+        const greetingInput = document.querySelector('.greeting-container .name');
+        const city = document.querySelector('.weather .city');
+
+        localStorage.setItem('name', greetingInput.value);
+        localStorage.setItem('city', city.value);
+    }
+    // get variables from local storage
+    function getLocalStorage() {
+        let name = localStorage.getItem('name');
+        let city = localStorage.getItem('city');
+
+        return { name, city };
+    }
+    /* local storage block end */
+
 })
