@@ -194,7 +194,7 @@ body {
   background-image: url("../assets/svg/slider-next.svg");
 }
 
-.clock {
+.time {
   min-height: 124px;
   margin-bottom: 10px;
   font-family: 'Arial-MT';
@@ -354,7 +354,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
 }
-.settings__form-butt {
+.settings__form-btn {
   width: 45%;
 }
 
@@ -362,10 +362,22 @@ body {
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 10px;}
+  padding: 10px;
+}
+
+.invisible {
+  opacity:0;
+  transition: opacity 1s 0.5s;
+}
+
+.visible {
+  opacity:1;
+  transition: opacity 1s 0.5s;
+}
+
 
 @media (max-width: 768px) {
-  .clock {
+  .time {
     min-height: 80px;
     font-size: 72px;    
   }

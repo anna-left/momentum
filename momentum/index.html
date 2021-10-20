@@ -12,7 +12,7 @@
 
 <body>
   <header class="header">
-    <div class="player">
+    <div class="player" id="player">
       <div class="player-controls">
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
@@ -20,7 +20,7 @@
       </div>
       <ul class="play-list"></ul>
     </div>
-    <div class="weather">
+    <div class="weather" id="weather">
       <input type="text" class="city" />
       <i class="weather-icon owf"></i>
       <div class="weather-error"></div>
@@ -33,21 +33,22 @@
     </div>
   </header>
   <main class="main">
+
     <div class="slider-icons">
       <button class="slide-prev slider-icon"></button>
       <button class="slide-next slider-icon"></button>
     </div>
     <!-- <time class="time"></time> -->
 
-    <div id="clock">
+    <div id="time">
       <span class="hour">hh</span>
       <span class="separator">:</span>
       <span class="min">mm</span>
       <span class="separator">:</span>
       <span class="sec">ss</span>
     </div>
-    <date class="date"></date>
-    <div class="greeting-container">
+    <date class="date" id="date"></date>
+    <div class="greeting-container" id="greeting">
       <span class="greeting"></span>
       <input type="text" class="name" placeholder="[Enter name]" />
     </div>
@@ -60,10 +61,12 @@
   </main>
 
   <footer class="footer">
-    <button class="change-quote"></button>
-    <div>
-      <div class="quote"></div>
-      <div class="author"></div>
+    <div id="quote">
+      <button class="change-quote"></button>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
     </div>
     <div class="footer__output">
       <p class="footer__conteiner">
@@ -79,9 +82,10 @@
             alt="logo"></a>
       </p>
     </div>
+
   </footer>
 
-  <form class="settings__form" action="#">
+  <div class="settings__form" action="#">
     <h3 class="" style="padding-left: 10px;">
       Settings
     </h3>
@@ -133,41 +137,42 @@
         display blocks:
       </h3>
       <div>
-        <input type="checkbox" id="scales" name="scales" checked>
-        <label for="scales">Scales</label>
+        <input type="checkbox" id="form__time" name="time" checked>
+        <label for="form__time">time</label>
       </div>
 
       <div>
-        <input type="checkbox" id="horns" name="horns" checked>
-        <label for="horns">Horns</label>
+        <input type="checkbox" id="form__date" name="date" checked>
+        <label for="form__date">date</label>
       </div>
       <div>
-        <input type="checkbox" id="scales" name="scales" checked>
-        <label for="scales">Scales</label>
+        <input type="checkbox" id="form__greeting" name="greeting" checked>
+        <label for="form__greeting">greeting</label>
+      </div>
+      <div>
+        <input type="checkbox" id="form__quote" name="quote" checked>
+        <label for="form__quote">quote</label>
       </div>
 
       <div>
-        <input type="checkbox" id="horns" name="horns" checked>
-        <label for="horns">Horns</label>
+        <input type="checkbox" id="form__weather" name="weather" checked>
+        <label for="form__weather">weather</label>
       </div>
       <div>
-        <input type="checkbox" id="scales" name="scales" checked>
-        <label for="scales">Scales</label>
+        <input type="checkbox" id="form__player" name="player" checked>
+        <label for="form__player">audio player</label>
       </div>
 
-      <div>
+      <!-- <div>
         <input type="checkbox" id="horns" name="horns" checked>
         <label for="horns">Horns</label>
-      </div>
-      <div>
-        <input type="checkbox" id="scales" name="scales" checked>
-        <label for="scales">Scales</label>
-      </div>
+      </div> -->
     </div>
     <div class="settings__form-buttons">
-      <button class="settings__form-butt">save</button><button class="settings__form-butt">cancel</button>
+      <button class="settings__form-btn" id="save">save</button><button class="settings__form-btn"
+        id="cancel">cancel</button>
     </div>
-  </form>
+  </div>
   <!-- <script src="js/script.js"></script> -->
   <script type="text/javascript" src="./quotes_en.json"></script>
   <script type="text/javascript" src="./quotes_ru.json"></script>

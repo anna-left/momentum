@@ -53,9 +53,9 @@ const arrGreeting = [{ time: 6, lang: 'ru', greet: 'Доброй ночи', time
 { time: 18, lang: 'by', greet: 'Добры дзень', timeOfDay: 'day' },
 { time: 24, lang: 'by', greet: 'Добры вечар', timeOfDay: 'evening' }];
 
-function updateClock() {
+function updateTime() {
 
-    const myClock = document.getElementById('clock');
+    const myTime = document.getElementById('time');
     const myDate = document.querySelector('date');
     const greeting = document.querySelector('.greeting');
 
@@ -64,13 +64,13 @@ function updateClock() {
     const currentDate = date.toLocaleDateString(userLang, options);
 
     let hours = String(date.getHours()).padStart(2, "0");
-    myClock.children[0].innerHTML = hours;
+    myTime.children[0].innerHTML = hours;
 
     let minutes = String(date.getMinutes()).padStart(2, "0");
-    myClock.children[2].innerHTML = minutes;
+    myTime.children[2].innerHTML = minutes;
 
     let seconds = String(date.getSeconds()).padStart(2, "0");
-    myClock.children[4].innerHTML = seconds;
+    myTime.children[4].innerHTML = seconds;
 
     myDate.innerHTML = currentDate;
 
@@ -84,8 +84,8 @@ function updateClock() {
     }
 }
 
-setInterval(updateClock, 1000);
-updateClock();
+setInterval(updateTime, 1000);
+updateTime();
 
 userName.addEventListener('change', () => { localStorage.setItem('userName', userName.value) });
 
