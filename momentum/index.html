@@ -2,110 +2,179 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="assets/favicon.ico" rel="shortcut icon" />
-    <link rel="stylesheet" href="css/owfont-regular.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>momentum</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="assets/favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>momentum</title>
 </head>
 
 <body>
-    <header class="header">
-        <div class="player">
-            <div class="player-controls">
-                <button class="play-prev player-icon"></button>
-                <button class="play player-icon"></button>
-                <button class="play-next player-icon"></button>
-            </div>
-            <ul class="play-list"></ul>
-        </div>
-        <div class="weather">
-            <input type="text" class="city" />
-            <i class="weather-icon owf"></i>
-            <div class="weather-error"></div>
-            <div class="description-container">
-                <span class="temperature"></span>
-                <span class="weather-description"></span>
-            </div>
-            <div class="wind"></div>
-            <div class="humidity"></div>
-        </div>
-    </header>
-    <main class="main">
-        <div class="slider-icons">
-            <button class="slide-prev slider-icon"></button>
-            <button class="slide-next slider-icon"></button>
-        </div>
-        <!-- <time class="time"></time> -->
+  <header class="header">
+    <div class="player">
+      <div class="player-controls">
+        <button class="play-prev player-icon"></button>
+        <button class="play player-icon"></button>
+        <button class="play-next player-icon"></button>
+      </div>
+      <ul class="play-list"></ul>
+    </div>
+    <div class="weather">
+      <input type="text" class="city" />
+      <i class="weather-icon owf"></i>
+      <div class="weather-error"></div>
+      <div class="description-container">
+        <span class="temperature"></span>
+        <span class="weather-description"></span>
+      </div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon"></button>
+      <button class="slide-next slider-icon"></button>
+    </div>
+    <!-- <time class="time"></time> -->
 
-        <div id="clock">
-            <span class="hour">hh</span>
-            <span class="separator">:</span>
-            <span class="min">mm</span>
-            <span class="separator">:</span>
-            <span class="sec">ss</span>
-        </div>
-        <date class="date"></date>
-        <div class="greeting-container">
-            <span class="greeting"></span>
-            <input type="text" class="name" placeholder="[Enter name]" />
-        </div>
-
-
-        <button class=""></button>
+    <div id="clock">
+      <span class="hour">hh</span>
+      <span class="separator">:</span>
+      <span class="min">mm</span>
+      <span class="separator">:</span>
+      <span class="sec">ss</span>
+    </div>
+    <date class="date"></date>
+    <div class="greeting-container">
+      <span class="greeting"></span>
+      <input type="text" class="name" placeholder="[Enter name]" />
+    </div>
 
 
-
-    </main>
-
-    <footer class="footer">
-        <button class="change-quote"></button>
-        <div>
-            <div class="quote"></div>
-            <div class="author"></div>
-        </div>
-        <div class="footer__output">
-            <p class="footer__conteiner">
-                <a href="https://rs.school/js/" target="blank"><img src="https://rs.school/images/rs_school_js.svg"
-                        width="100" alt="logo"></a>
-            </p>
-
-            <p class="footer__conteiner">
-                <time class="year" datetime="2021 ">2021</time>
-            </p>
-            <p class="footer__conteiner">
-                <a href="https://github.com/anna-left" target="blank"><img src="./assets/svg/github.svg" width="41"
-                        alt="logo"></a>
-            </p>
-        </div>
-    </footer>
-
-    <form class="settings" action="#">
-        <div class="settings__lang">
-            <h4 class="">
-                language
-            </h4>
-            <label class="">
-                <input type="radio" name="radio" checked="checked" id="en">
-                <span class="checkmark"></span>
-                English
-            </label>
-            <label class="">
-                <input type="radio" name="radio" id="ru">
-                <span class="checkmark"></span>
-                Русский
-            </label>
-
-        </div>
+    <button class="settings__button"></button>
 
 
-    </form>
-    <!-- <script src="js/script.js"></script> -->
-    <script type="text/javascript" src="./quotes_en.json"></script>
-    <script type="text/javascript" src="./quotes_ru.json"></script>
-    <script src="./scripts/clock.js"></script>
-    <script src="./scripts/quotes.js"></script>
+
+  </main>
+
+  <footer class="footer">
+    <button class="change-quote"></button>
+    <div>
+      <div class="quote"></div>
+      <div class="author"></div>
+    </div>
+    <div class="footer__output">
+      <p class="footer__conteiner">
+        <a href="https://rs.school/js/" target="blank"><img src="https://rs.school/images/rs_school_js.svg" width="100"
+            alt="logo"></a>
+      </p>
+
+      <p class="footer__conteiner">
+        <time class="year" datetime="2021 ">2021</time>
+      </p>
+      <p class="footer__conteiner">
+        <a href="https://github.com/anna-left" target="blank"><img src="./assets/svg/github.svg" width="41"
+            alt="logo"></a>
+      </p>
+    </div>
+  </footer>
+
+  <form class="settings__form" action="#">
+    <h3 class="" style="padding-left: 10px;">
+      Settings
+    </h3>
+    <div class="settings__radio">
+      <h4 class="">
+        Language
+      </h4>
+      <label class="">
+        <input type="radio" name="language" checked="checked" id="en">
+        <span class="checkmark"></span>
+        English
+      </label>
+      <label class="">
+        <input type="radio" name="language" id="ru">
+        <span class="checkmark"></span>
+        Русский
+      </label>
+
+
+
+    </div>
+    <div class="settings__radio">
+      <h4 class="">
+        Photo source
+      </h4>
+      <label class="">
+        <input type="radio" name="photo__source" checked="checked" id="en">
+        <span class="checkmark"></span>
+        GitHub
+      </label>
+      <label class="">
+        <input type="radio" name="photo__source" id="ru">
+        <span class="checkmark"></span>
+        Unsplash API
+      </label><label class="">
+        <input type="radio" name="photo__source" id="ru">
+        <span class="checkmark"></span>
+        Flickr API
+      </label>
+      <input type="text" id="tag" placeholder="tag">
+    </div>
+
+    <!-- время, дата, приветствие, цитата дня, прогноз погоды, аудиоплеер, список дел -->
+
+
+
+    <div class="form__checkbox">
+      <h3 class="">
+        display blocks:
+      </h3>
+      <div>
+        <input type="checkbox" id="scales" name="scales" checked>
+        <label for="scales">Scales</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="horns" name="horns" checked>
+        <label for="horns">Horns</label>
+      </div>
+      <div>
+        <input type="checkbox" id="scales" name="scales" checked>
+        <label for="scales">Scales</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="horns" name="horns" checked>
+        <label for="horns">Horns</label>
+      </div>
+      <div>
+        <input type="checkbox" id="scales" name="scales" checked>
+        <label for="scales">Scales</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="horns" name="horns" checked>
+        <label for="horns">Horns</label>
+      </div>
+      <div>
+        <input type="checkbox" id="scales" name="scales" checked>
+        <label for="scales">Scales</label>
+      </div>
+    </div>
+    <div class="settings__form-buttons">
+      <button class="settings__form-butt">save</button><button class="settings__form-butt">cancel</button>
+    </div>
+  </form>
+  <!-- <script src="js/script.js"></script> -->
+  <script type="text/javascript" src="./quotes_en.json"></script>
+  <script type="text/javascript" src="./quotes_ru.json"></script>
+  <script src="./scripts/clock.js"></script>
+  <script src="./scripts/quotes.js"></script>
+  <script src="./scripts/player.js"></script>
+  <script src="./scripts/settings.js"></script>
 </body>
 
 </html>
