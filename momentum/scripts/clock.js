@@ -1,5 +1,11 @@
-const userLang = navigator.language || navigator.userLanguage;
-const schortUserLang = userLang.slice(0, 2);
+let userLang, schortUserLang;
+if (!userLang) {
+    userLang = navigator.language || navigator.userLanguage;
+}
+if (!schortUserLang) {
+    schortUserLang = userLang.slice(0, 2);
+}
+
 const userName = document.querySelector('.name');
 const body = document.querySelector('body');
 const weatherIcon = document.querySelector('.weather-icon');
@@ -97,7 +103,7 @@ function getLocalStorage() {
         city.value = localStorage.getItem('curCity');
     }
 }
-window.addEventListener('load', getLocalStorage);
+window.addEventListener('DOMContentLoaded', getLocalStorage);
 
 // ****************************
 // слайдер фонового изображения

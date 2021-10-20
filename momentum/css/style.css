@@ -314,8 +314,8 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  transition: left 0.5s;
-  bottom: 10%;
+  transition: left 0.7s;
+  bottom: 7%;
   padding: 10px;
   text-align: left;
   background: rgba(84, 85, 85, 0.4);
