@@ -85,7 +85,7 @@ const arrGreeting = [{ time: 6, lang: 'ru', greet: 'Доброй ночи', time
 { time: 6, lang: 'en', greet: 'Good night', timeOfDay: 'night' },
 { time: 12, lang: 'en', greet: 'Good morning', timeOfDay: 'morning' },
 { time: 18, lang: 'en', greet: 'Good afternoon', timeOfDay: 'afternoon' },
-{ time: 24, lang: 'en', greet: 'Good evening', timeOfDay: 'evening' },
+{ time: 24, lang: 'en', greet: 'Good evening', timeOfDay: 'evening' }
 ];
 
 function updateTime() {
