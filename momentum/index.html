@@ -102,8 +102,6 @@
         Русский
       </label>
 
-
-
     </div>
     <div class="settings__radio">
       <h4 class="t2">
@@ -123,54 +121,43 @@
         <span class="checkmark"></span>
         Flickr API
       </label>
-      <input type="text" id="tag" placeholder="tag">
+      <input type="text" id="tag" onchange="changeTag()" placeholder="tag">
     </div>
-
-    <!-- время, дата, приветствие, цитата дня, прогноз погоды, аудиоплеер, список дел -->
-
-
 
     <div class="form__checkbox">
       <h4 class="t3">
         Display:
       </h4>
       <div>
-        <input type="checkbox" id="form__time" name="time">
+        <input type="checkbox" id="form__time" onclick="saveСheck('time')" name="time">
         <label for="form__time" id="form__time-label">time</label>
       </div>
-
       <div>
-        <input type="checkbox" id="form__date" name="date">
+        <input type="checkbox" id="form__date" onclick="saveСheck('date')" name="date">
         <label for="form__date" id="form__date-label">date</label>
       </div>
       <div>
-        <input type="checkbox" id="form__greeting" name="greeting">
+        <input type="checkbox" id="form__greeting" onclick="saveСheck('greeting')" name="greeting">
         <label for="form__greeting" id="form__greeting-label">greeting</label>
       </div>
       <div>
-        <input type="checkbox" id="form__quote" name="quote">
+        <input type="checkbox" id="form__quote" onclick="saveСheck('quote')" name="quote">
         <label for="form__quote" id="form__quote-label">quote</label>
       </div>
 
       <div>
-        <input type="checkbox" id="form__weather" name="weather">
+        <input type="checkbox" id="form__weather" onclick="saveСheck('weather')" name="weather">
         <label for="form__weather" id="form__weather-label">weather</label>
       </div>
       <div>
-        <input type="checkbox" id="form__player" name="player">
+        <input type="checkbox" id="form__player" onclick="saveСheck('player')" name="player">
         <label for="form__player" id="form__player-label">player</label>
       </div>
 
-      <!-- <div>
-        <input type="checkbox" id="horns" name="horns" checked>
-        <label for="horns">Horns</label>
-      </div> -->
     </div>
-    <!-- <div class="settings__form-button"> -->
 
-    <!-- </div> -->
   </div>
-  <!-- <script src="js/script.js"></script> -->
+
   <script type="text/javascript" src="./quotes_en.json"></script>
   <script type="text/javascript" src="./quotes_ru.json"></script>
   <script src="./scripts/clock.js"></script>
