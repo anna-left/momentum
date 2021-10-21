@@ -7,11 +7,19 @@ const weatherDescription = document.querySelector('.weather-description');
 const humidity = document.querySelector('.humidity');
 const wind = document.querySelector('.wind');
 
+if (localStorage.getItem('schortUserLang')) {
+    schortUserLang = localStorage.getItem('schortUserLang');
+} else {
+    if (!schortUserLang) {
+        const userLang = navigator.language || navigator.userLanguage;
+        schortUserLang = userLang.slice(0, 2);
+    }
+}
+
 const city = document.querySelector('.city');
 let timeOfDay;
 
 const langSet = [{ lang: 'ru', wind: 'Скорость ветра', windUnits: 'м/с', humidity: 'Влажность', city: 'Минск', error: 'ошибка' },
-{ lang: 'by', wind: 'Хуткасць ветру', windUnits: 'м/с', humidity: 'Вільготнасць', city: 'Мiнск', error: 'памылка' },
 { lang: 'en', wind: 'Wind', windUnits: 'm/s', humidity: 'Humidity', city: 'Minsk', error: 'error' }];
 
 
@@ -267,7 +275,9 @@ function getLocalStorage() {
         const curValue = (localStorage.getItem('Flickr') === 'true') ? true : false;
         document.querySelector('#Flickr').checked = curValue;
     }
-
+    if (document.querySelector('#GitHub').checked === false && document.querySelector('#Unsplash').checked === false && document.querySelector('#Flickr').checked === false) {
+        document.querySelector('#GitHub').checked = true;
+    }
 
     for (let i = 0; i < arrSet.length; i++) {
         const curElArr = `form__${arrSet[i]}`;
