@@ -11,10 +11,10 @@ function eventChangeQuoteBtn(data) {
 
 function getObjQuotes() {
 
-
-    // const url = 'http://api.forismatic.com/api/1.0/';
     const url = 'https://type.fit/api/quotes';
-
+    if (schortUserLang === 'ru') {
+        url = '../quotes_ru.json';
+    }
     fetch(url)
         .then(data => data.json())
         .then(data => {

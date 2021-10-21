@@ -1,4 +1,3 @@
-
 function musicPlayer() {
     const playListMusic = [
         {
@@ -21,7 +20,6 @@ function musicPlayer() {
             duration: '05:03'
         }
     ]
-    // const player = document.querySelector('.player');
     const playerBtnsParrent = player.querySelector('.player-controls');
     const pageListSongs = player.querySelector('.play-list');
 
@@ -86,7 +84,6 @@ function addMusicPlayer(firstMusic) {
     return document.querySelector('.page__player');
 }
 
-// change active index
 function changeActiveSongMark(activeSong, lengthSongs, direction = 'next') {
     let current = activeSong;
 
@@ -111,3 +108,4 @@ function drawMusicList(playListMusic, musicList) {
     musicList.innerHTML = stringOut;
 }
 
+musicPlayer();

@@ -81,15 +81,18 @@
   </footer>
 
   <div class="settings__form" action="#">
-    <h3 class="t0" style="padding-left: 10px;">
-      Settings
-    </h3>
+    <div class="settings__form-title">
+      <h3 class="t0">
+        Settings
+      </h3>
+      <button class="settings__form-close"></button>
+    </div>
     <div class="settings__radio">
       <h4 class="t1">
         Language
       </h4>
       <label class="">
-        <input type="radio" name="language" checked="checked" id="en">
+        <input type="radio" name="language" id="en">
         <span class="checkmark"></span>
         English
       </label>
@@ -107,16 +110,16 @@
         Photo source
       </h4>
       <label class="">
-        <input type="radio" name="photo__source" checked="checked" id="en">
+        <input type="radio" name="photo__source" id="GitHub">
         <span class="checkmark"></span>
         GitHub
       </label>
       <label class="">
-        <input type="radio" name="photo__source" id="ru">
+        <input type="radio" name="photo__source" id="Unsplash">
         <span class="checkmark"></span>
         Unsplash API
       </label><label class="">
-        <input type="radio" name="photo__source" id="ru">
+        <input type="radio" name="photo__source" id="Flickr">
         <span class="checkmark"></span>
         Flickr API
       </label>
@@ -128,33 +131,33 @@
 
 
     <div class="form__checkbox">
-      <h3 class="t3">
+      <h4 class="t3">
         Display:
-      </h3>
+      </h4>
       <div>
-        <input type="checkbox" id="form__time" name="time" checked>
+        <input type="checkbox" id="form__time" name="time">
         <label for="form__time" id="form__time-label">time</label>
       </div>
 
       <div>
-        <input type="checkbox" id="form__date" name="date" checked>
+        <input type="checkbox" id="form__date" name="date">
         <label for="form__date" id="form__date-label">date</label>
       </div>
       <div>
-        <input type="checkbox" id="form__greeting" name="greeting" checked>
+        <input type="checkbox" id="form__greeting" name="greeting">
         <label for="form__greeting" id="form__greeting-label">greeting</label>
       </div>
       <div>
-        <input type="checkbox" id="form__quote" name="quote" checked>
+        <input type="checkbox" id="form__quote" name="quote">
         <label for="form__quote" id="form__quote-label">quote</label>
       </div>
 
       <div>
-        <input type="checkbox" id="form__weather" name="weather" checked>
+        <input type="checkbox" id="form__weather" name="weather">
         <label for="form__weather" id="form__weather-label">weather</label>
       </div>
       <div>
-        <input type="checkbox" id="form__player" name="player" checked>
+        <input type="checkbox" id="form__player" name="player">
         <label for="form__player" id="form__player-label">player</label>
       </div>
 
@@ -163,10 +166,9 @@
         <label for="horns">Horns</label>
       </div> -->
     </div>
-    <div class="settings__form-buttons">
-      <button class="settings__form-btn" id="save">save</button><button class="settings__form-btn"
-        id="cancel">cancel</button>
-    </div>
+    <!-- <div class="settings__form-button"> -->
+
+    <!-- </div> -->
   </div>
   <!-- <script src="js/script.js"></script> -->
   <script type="text/javascript" src="./quotes_en.json"></script>
