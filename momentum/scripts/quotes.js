@@ -28,7 +28,7 @@ function getObjQuotes() {
 
 function showNewQuote(quotes, outParent) {
     if (quotes === {}) return;
-    let randomNumber = getRandomArbitrary(1, 1200);
+    let randomNumber = getRandomArbitrary(1, 19);
     quote.textContent = quotes[randomNumber].text;
     author.textContent = quotes[randomNumber].author;
 }
