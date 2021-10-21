@@ -15,10 +15,6 @@ const langSet = [{ lang: 'ru', wind: 'Скорость ветра', windUnits: '
 { lang: 'en', wind: 'Wind', windUnits: 'm/s', humidity: 'Humidity', city: 'Minsk', error: 'error' }];
 
 
-if (!schortUserLang) {
-    const userLang = navigator.language || navigator.userLanguage;
-    schortUserLang = userLang.slice(0, 2);
-}
 function translationSettings() {
     if (schortUserLang === 'en') {
         const arrSet = ['time', 'date', 'greeting', 'quote', 'weather', 'player'];
@@ -50,13 +46,7 @@ function translationSettings() {
         document.querySelector('#tag').placeholder = "тег";
     }
 }
-// translationSettings();
 
-
-// let cities = [{ id: 121, name: 'г. Урюпинск' }, { id: 122, name: 'г. Париж' }, { id: 123, name: 'г. Москва' }, { id: 124, name: 'г. Штормград' }];
-// let searchTerm = 'г. Москва';
-// let cityId = cities.find(city => city.name === searchTerm).id
-// console.log(cityId);
 
 // ******************************
 // установка начальных параметров
@@ -124,15 +114,6 @@ updateTime();
 
 userName.addEventListener('change', () => { localStorage.setItem('userName', userName.value) });
 
-// function getLocalStorage() {
-//     if (localStorage.getItem('userName')) {
-//         userName.value = localStorage.getItem('userName');
-//     }
-//     if (localStorage.getItem('City')) {
-//         city.value = localStorage.getItem('City');
-//     }
-// }
-// window.addEventListener('DOMContentLoaded', getLocalStorage);
 
 // ****************************
 // слайдер фонового изображения
@@ -144,8 +125,6 @@ function getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-let curIndImg = getRandomArbitrary(1, 21);
-changeImg();
 
 function changeImg() {
 
@@ -174,45 +153,39 @@ function changeImg() {
                 img.onload = () => {
                     body.style.backgroundImage = `url(${src})`;
                 };
-                // console.log(data.urls.regular)
             });
     }
     else if (document.querySelector('#Flickr').checked) {
-
+        let curTag = document.querySelector('#tag').value;
+        if (!curTag) {
+            curTag = timeOfDay;
+        }
+        const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e7d2810e3378a8180845c690b076b3f&tags=${curTag}&per_page=100&page=1&format=json&nojsoncallback=1`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const sizeSuffix = 'b';
+                const { server, id, secret } = data.photos.photo[curIndImg];
+                const img = new Image();
+                const src = `https://live.staticflickr.com/${server}/${id}_${secret}_${sizeSuffix}.jpg`;
+                img.src = src;
+                img.onload = () => {
+                    body.style.backgroundImage = `url(${src})`;
+                };
+            });
     }
-
-
-    // getLinkToImage();
-    // function getLinkToImage() {
-    //     const url = 'https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=IXRydqpLBebyu-wRT6-yOn38qX-nGiQsFGTRRTcDK6w';
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             const img = new Image();
-    //             // const fileName = String(curIndImg).padStart(2, "0");
-    //             const src = data.urls.regular;
-    //             img.src = src;
-    //             img.onload = () => {
-    //                 body.style.backgroundImage = `url(${src})`;
-    //             };
-    //             console.log(data.urls.regular)
-    //         });
-
-
-    // }
-
 }
 
 document.querySelector(".slide-prev").addEventListener("click", function (e) {
     curIndImg--;
     if (curIndImg === 0) curIndImg = 20;
-    changeImg(curIndImg)
+    changeImg()
 });
 
 document.querySelector(".slide-next").addEventListener("click", function (e) {
     curIndImg++;
     if (curIndImg === 21) curIndImg = 1;
-    changeImg(curIndImg)
+    changeImg()
 });
 
 // ****************************
@@ -228,7 +201,6 @@ async function getWeather() {
         let tWindUnits = langSet.find(e => e.lang === schortUserLang).windUnits;
         let tWind = langSet.find(e => e.lang === schortUserLang).wind;
         let tHumidity = langSet.find(e => e.lang === schortUserLang).humidity;
-
 
         if (data.code >= 400 && data.code <= 600) {
             let tError = langSet.find(e => e.lang === schortUserLang).error;
@@ -255,17 +227,13 @@ async function getWeather() {
         weatherDescription.textContent = '';
         humidity.textContent = '';
         wind.textContent = '';
-
     }
-
-
 }
-
 
 function setCity() {
     getWeather();
     city.blur();
-    // localStorage.setItem('City', city.value);
+    localStorage.setItem('city', city.value);
 }
 
 document.addEventListener('DOMContentLoaded', getWeather);
@@ -275,39 +243,64 @@ function getLocalStorage() {
     if (localStorage.getItem('userName')) {
         userName.value = localStorage.getItem('userName');
     }
-    if (localStorage.getItem('City')) {
-        city.value = localStorage.getItem('City');
+    if (localStorage.getItem('city')) {
+        city.value = localStorage.getItem('city');
     }
     if (localStorage.getItem('schortUserLang')) {
         schortUserLang = localStorage.getItem('schortUserLang');
-    }
-    if (localStorage.getItem('GitHub')) {
-        document.querySelector('#GitHub').checked = localStorage.getItem('GitHub');
-    }
-    if (localStorage.getItem('Unsplash')) {
-        document.querySelector('#Unsplash').checked = localStorage.getItem('Unsplash');
-    }
-    if (localStorage.getItem('Flickr')) {
-        document.querySelector('#Flickr').checked = localStorage.getItem('Flickr');
+    } else {
+        if (!schortUserLang) {
+            const userLang = navigator.language || navigator.userLanguage;
+            schortUserLang = userLang.slice(0, 2);
+        }
     }
 
-    if (localStorage.getItem('form__time')) {
-        document.querySelector('#form__time').checked = localStorage.getItem('form__time');
+    if (localStorage.getItem('GitHub')) {
+        const curValue = (localStorage.getItem('GitHub') === 'true') ? true : false;
+        document.querySelector('#GitHub').checked = curValue;
+    } else {
+        elForm.checked = true;
+        document.querySelector('#GitHub').checked = true;
     }
-    if (localStorage.getItem('form__date')) {
-        document.querySelector('#form__date').checked = localStorage.getItem('form__date');
+    if (localStorage.getItem('Unsplash')) {
+        const curValue = (localStorage.getItem('Unsplash') === 'true') ? true : false;
+        document.querySelector('#Unsplash').checked = curValue;
+    } else {
+        elForm.checked = true;
+        document.querySelector('#Unsplash').checked = true;
     }
-    if (localStorage.getItem('form__greeting')) {
-        document.querySelector('#form__greeting').checked = localStorage.getItem('form__greeting');
+    if (localStorage.getItem('Flickr')) {
+        const curValue = (localStorage.getItem('Flickr') === 'true') ? true : false;
+        document.querySelector('#Flickr').checked = curValue;
+    } else {
+        elForm.checked = true;
+        document.querySelector('#Flickr').checked = true;
     }
-    if (localStorage.getItem('form__quote')) {
-        document.querySelector('#form__quote').checked = localStorage.getItem('form__quote');
+
+
+    for (let i = 0; i < arrSet.length; i++) {
+        const curElArr = `form__${arrSet[i]}`;
+        const curElArrF = `#form__${arrSet[i]}`;
+        const elForm = document.querySelector(curElArrF);
+        if (localStorage.getItem(curElArr)) {
+            const curValue = (localStorage.getItem(curElArr) === 'true') ? true : false;
+            elForm.checked = curValue;
+        } else {
+            elForm.checked = true;
+        }
+
+        const el = document.querySelector(`#${arrSet[i]}`);
+        if (elForm.checked) {
+            el.classList.remove('invisible');
+            el.classList.add('visible');
+        } else {
+            el.classList.remove('visible');
+            el.classList.add('invisible');
+        }
     }
-    if (localStorage.getItem('form__weather')) {
-        document.querySelector('#form__weather').checked = localStorage.getItem('form__weather');
-    }
-    if (localStorage.getItem('form__player')) {
-        document.querySelector('#form__player').checked = localStorage.getItem('form__player');
+
+    if (localStorage.getItem('tag')) {
+        document.querySelector('#tag').value = localStorage.getItem('tag');
     }
 
 }
@@ -317,6 +310,12 @@ window.addEventListener('DOMContentLoaded', function e() {
     translationSettings();
     setCity();
     updateTime();
+    curIndImg = getRandomArbitrary(1, 21);
+    changeImg();
+
+    if (localStorage.getItem('schortUserLang')) {
+        schortUserLang = localStorage.getItem('schortUserLang');
+    }
     if (schortUserLang === 'en') {
         document.querySelector('#en').checked = "checked";
         document.querySelector('#ru').checked = "";
@@ -324,15 +323,13 @@ window.addEventListener('DOMContentLoaded', function e() {
         document.querySelector('#ru').checked = "checked";
         document.querySelector('#en').checked = "";
     }
+    getObjQuotes();
 
-}
+    settingsFrm.classList.add('settings__form__no');
+});
 
-);
-
-
-//window.addEventListener('beforeunload', saveLocalStorage());
 function saveLocalStorage() {
-    localStorage.setItem('City', city.value);
+    localStorage.setItem('city', city.value);
     localStorage.setItem('userName', userName.value);
     localStorage.setItem('schortUserLang', schortUserLang);
 
