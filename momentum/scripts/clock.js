@@ -258,23 +258,14 @@ function getLocalStorage() {
     if (localStorage.getItem('GitHub')) {
         const curValue = (localStorage.getItem('GitHub') === 'true') ? true : false;
         document.querySelector('#GitHub').checked = curValue;
-    } else {
-        elForm.checked = true;
-        document.querySelector('#GitHub').checked = true;
     }
     if (localStorage.getItem('Unsplash')) {
         const curValue = (localStorage.getItem('Unsplash') === 'true') ? true : false;
         document.querySelector('#Unsplash').checked = curValue;
-    } else {
-        elForm.checked = true;
-        document.querySelector('#Unsplash').checked = true;
     }
     if (localStorage.getItem('Flickr')) {
         const curValue = (localStorage.getItem('Flickr') === 'true') ? true : false;
         document.querySelector('#Flickr').checked = curValue;
-    } else {
-        elForm.checked = true;
-        document.querySelector('#Flickr').checked = true;
     }
 
 
