@@ -11,7 +11,7 @@ function eventChangeQuoteBtn(data) {
 
 function getObjQuotes() {
 
-    const url = 'https://type.fit/api/quotes';
+    let url = 'https://type.fit/api/quotes';
     if (schortUserLang === 'ru') {
         url = '../quotes_ru.json';
     }
