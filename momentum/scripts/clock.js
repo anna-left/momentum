@@ -80,16 +80,13 @@ switch (schortUserLang) {
 // ****************************
 const arrGreeting = [{ time: 6, lang: 'ru', greet: 'Доброй ночи', timeOfDay: 'night' },
 { time: 12, lang: 'ru', greet: 'Доброе утро', timeOfDay: 'morning' },
-{ time: 18, lang: 'ru', greet: 'Добрый день', timeOfDay: 'day' },
+{ time: 18, lang: 'ru', greet: 'Добрый день', timeOfDay: 'afternoon' },
 { time: 24, lang: 'ru', greet: 'Добрый вечер', timeOfDay: 'evening' },
 { time: 6, lang: 'en', greet: 'Good night', timeOfDay: 'night' },
 { time: 12, lang: 'en', greet: 'Good morning', timeOfDay: 'morning' },
-{ time: 18, lang: 'en', greet: 'Good afternoon', timeOfDay: 'day' },
+{ time: 18, lang: 'en', greet: 'Good afternoon', timeOfDay: 'afternoon' },
 { time: 24, lang: 'en', greet: 'Good evening', timeOfDay: 'evening' },
-{ time: 6, lang: 'by', greet: 'Доброй ночи', timeOfDay: 'night' },
-{ time: 12, lang: 'by', greet: 'Добрай раніцы', timeOfDay: 'morning' },
-{ time: 18, lang: 'by', greet: 'Добры дзень', timeOfDay: 'day' },
-{ time: 24, lang: 'by', greet: 'Добры вечар', timeOfDay: 'evening' }];
+];
 
 function updateTime() {
 
