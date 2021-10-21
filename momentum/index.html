@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="assets/favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>momentum</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="player" id="player">
+      <div class="player-controls">
+        <button class="play-prev player-icon"></button>
+        <button class="play player-icon"></button>
+        <button class="play-next player-icon"></button>
+      </div>
+      <ul class="play-list"></ul>
+    </div>
+    <div class="weather" id="weather">
+      <input type="text" class="city" />
+      <i class="weather-icon owf"></i>
+      <div class="weather-error"></div>
+      <div class="description-container">
+        <span class="temperature"></span>
+        <span class="weather-description"></span>
+      </div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
+    </div>
+  </header>
+  <main class="main">
+
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon"></button>
+      <button class="slide-next slider-icon"></button>
+    </div>
+    <!-- <time class="time"></time> -->
+
+    <div id="time">
+      <span class="hour">hh</span>
+      <span class="separator">:</span>
+      <span class="min">mm</span>
+      <span class="separator">:</span>
+      <span class="sec">ss</span>
+    </div>
+    <date class="date" id="date"></date>
+    <div class="greeting-container" id="greeting">
+      <span class="greeting"></span>
+      <input type="text" class="name" placeholder="[Enter name]" />
+    </div>
+    <button class="settings__button"></button>
+  </main>
+
+  <footer class="footer">
+    <div id="quote">
+      <button class="change-quote"></button>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
+    </div>
+    <div class="footer__output">
+      <p class="footer__conteiner">
+        <a href="https://rs.school/js/" target="blank"><img src="https://rs.school/images/rs_school_js.svg" width="100"
+            alt="logo"></a>
+      </p>
+
+      <p class="footer__conteiner">
+        <time class="year" datetime="2021 ">2021</time>
+      </p>
+      <p class="footer__conteiner">
+        <a href="https://github.com/anna-left" target="blank"><img src="./assets/svg/github.svg" width="41"
+            alt="logo"></a>
+      </p>
+    </div>
+
+  </footer>
+
+  <div class="settings__form" action="#">
+    <div class="settings__form-title">
+      <h3 class="t0">
+        Settings
+      </h3>
+      <button class="settings__form-close"></button>
+    </div>
+    <div class="settings__radio">
+      <h4 class="t1">
+        Language
+      </h4>
+      <label class="">
+        <input type="radio" name="language" id="en">
+        <span class="checkmark"></span>
+        English
+      </label>
+      <label class="">
+        <input type="radio" name="language" id="ru">
+        <span class="checkmark"></span>
+        Русский
+      </label>
+
+
+
+    </div>
+    <div class="settings__radio">
+      <h4 class="t2">
+        Photo source
+      </h4>
+      <label class="">
+        <input type="radio" name="photo__source" id="GitHub">
+        <span class="checkmark"></span>
+        GitHub
+      </label>
+      <label class="">
+        <input type="radio" name="photo__source" id="Unsplash">
+        <span class="checkmark"></span>
+        Unsplash API
+      </label><label class="">
+        <input type="radio" name="photo__source" id="Flickr">
+        <span class="checkmark"></span>
+        Flickr API
+      </label>
+      <input type="text" id="tag" placeholder="tag">
+    </div>
+
+    <!-- время, дата, приветствие, цитата дня, прогноз погоды, аудиоплеер, список дел -->
+
+
+
+    <div class="form__checkbox">
+      <h4 class="t3">
+        Display:
+      </h4>
+      <div>
+        <input type="checkbox" id="form__time" name="time">
+        <label for="form__time" id="form__time-label">time</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="form__date" name="date">
+        <label for="form__date" id="form__date-label">date</label>
+      </div>
+      <div>
+        <input type="checkbox" id="form__greeting" name="greeting">
+        <label for="form__greeting" id="form__greeting-label">greeting</label>
+      </div>
+      <div>
+        <input type="checkbox" id="form__quote" name="quote">
+        <label for="form__quote" id="form__quote-label">quote</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="form__weather" name="weather">
+        <label for="form__weather" id="form__weather-label">weather</label>
+      </div>
+      <div>
+        <input type="checkbox" id="form__player" name="player">
+        <label for="form__player" id="form__player-label">player</label>
+      </div>
+
+      <!-- <div>
+        <input type="checkbox" id="horns" name="horns" checked>
+        <label for="horns">Horns</label>
+      </div> -->
+    </div>
+    <!-- <div class="settings__form-button"> -->
+
+    <!-- </div> -->
+  </div>
+  <!-- <script src="js/script.js"></script> -->
+  <script type="text/javascript" src="./quotes_en.json"></script>
+  <script type="text/javascript" src="./quotes_ru.json"></script>
+  <script src="./scripts/clock.js"></script>
+  <script src="./scripts/quotes.js"></script>
+  <script src="./scripts/player.js"></script>
+  <script src="./scripts/settings.js"></script>
+</body>
+
+</html>
