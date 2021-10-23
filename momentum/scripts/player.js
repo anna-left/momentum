@@ -1,23 +1,19 @@
 function musicPlayer() {
     const playListMusic = [
         {
+            title: 'Ennio Morricone',
+            src: './assets/sounds/Ennio Morricone.mp3',
+        },
+        {
             title: 'Aqua Caelestis',
             src: './assets/sounds/Aqua Caelestis.mp3',
-            duration: '00:58'
         }, {
             title: 'River Flows In You',
             src: './assets/sounds/River Flows In You.mp3',
-            duration: '03:50'
         },
         {
             title: 'Summer Wind',
             src: './assets/sounds/Summer Wind.mp3',
-            duration: '05:05'
-        },
-        {
-            title: 'Ennio Morricone',
-            src: './assets/sounds/Ennio Morricone.mp3',
-            duration: '05:03'
         }
     ]
     const playerBtnsParrent = player.querySelector('.player-controls');
@@ -36,6 +32,57 @@ function listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs) {
     const lengthSongs = playListMusic.length;
     let activeSong = 0;
 
+    const volume = document.querySelector('#soundVolume');
+    styleRangeUpdate(volume);
+    volume.addEventListener('change', handleRangeUpdate);
+    volume.addEventListener('mousemove', handleRangeUpdate);
+
+    function handleRangeUpdate() {
+        pagePlayer.volume = this.value;
+        styleRangeUpdate(this);
+    }
+
+    function styleRangeUpdate(curElem) {
+        const percent = 100 * (curElem.value - curElem.min) / (curElem.max - curElem.min);
+    }
+
+    const progress = player.querySelector('.duration-player');
+    const progressBar = player.querySelector('#progress');
+
+
+    function showTime(param) {
+        let min = Math.round(param / 60);
+        let sec = Math.round(param % 60);
+        if (!sec) {
+            return "00:00";
+        }
+        return String(min).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+    }
+
+    function handleProgress() {
+        const percent = (pagePlayer.currentTime / pagePlayer.duration) * 100;
+        progressBar.style.flexBasis = `${percent}%`;
+        document.querySelector('#timer').innerText = showTime(pagePlayer.currentTime);
+        document.querySelector('#duration').innerText = showTime(pagePlayer.duration);
+    }
+
+    function scrub(e) {
+        const scrubTime = (e.offsetX / progress.offsetWidth) * pagePlayer.duration;
+        pagePlayer.currentTime = scrubTime;
+    }
+    pagePlayer.addEventListener('timeupdate', handleProgress);
+
+    let mousedown = false;
+    progress.addEventListener('click', scrub);
+    progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+    progress.addEventListener('mousedown', () => mousedown = true);
+    progress.addEventListener('mouseup', () => mousedown = false);
+
+    progressBar.addEventListener('input', function () {
+        const value = this.value * 100;
+        this.style.background = `linear-gradient(to right, #24809E 0%, #24809E ${value}%, #B3B3B3 ${value}%, #B3B3B3 100%)`
+    });
+
     document.querySelector(".progress-title").innerText = playListMusic[activeSong].title;
 
     playerBtnsParrent.addEventListener('click', (e) => {
@@ -46,11 +93,13 @@ function listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs) {
         if (target.classList.contains('play-prev')) {
             activeSong = changeActiveSongMark(activeSong, lengthSongs, 'prev');
             document.querySelector(".progress-title").innerText = playListMusic[activeSong].title;
+            progressBar.style.flexBasis = `0%`;
         };
 
         if (target.classList.contains('play-next')) {
             activeSong = changeActiveSongMark(activeSong, lengthSongs, 'next');
             document.querySelector(".progress-title").innerText = playListMusic[activeSong].title;
+            progressBar.style.flexBasis = `0%`;
         };
 
         if (target.classList.contains('muteBtn')) {
@@ -73,39 +122,19 @@ function listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs) {
         };
 
 
+
     })
 }
 
+function addMusicPlayer(firstMusic) {
+    const audio = document.createElement('audio');
+    audio.classList.add('page__player');
+    audio.setAttribute('src', firstMusic.src);
+    document.body.appendChild(audio);
 
+    return document.querySelector('.page__player');
+}
 
-
-
-// const playerBtnsParrent = player.querySelector('.player-controls');
-// const pageListSongs = player.querySelector('.play-list');
-
-// drawMusicList(playListMusic, pageListSongs);
-
-// listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs);
-
-// const muteСontrol = document.querySelector('.muteButton');
-// muteСontrol.addEventListener('click', toggleMute);
-
-// let curVolume = pagePlayer.volume;
-// function toggleMute() {
-//     if (video.volume > 0) {
-//         curVolume = pagePlayer.volume;
-//         pagePlayer.volume = 0;
-//         сrossMute();
-//     } else {
-//         pagePlayer.volume = curVolume;
-//         сrossMuteNo();
-//     }
-
-// }
-
-
-
-// play song and add active class in list songs
 function playSong(activeSong, playListMusic, pagePlayer, pageListSongs) {
     const oldSrc = pagePlayer.getAttribute('src');
     const newSrc = playListMusic[activeSong].src;
@@ -120,15 +149,6 @@ function playSong(activeSong, playListMusic, pagePlayer, pageListSongs) {
     pagePlayer.play();
 }
 
-// add music player to page
-function addMusicPlayer(firstMusic) {
-    const audio = document.createElement('audio');
-    audio.classList.add('page__player');
-    audio.setAttribute('src', firstMusic.src);
-    document.body.appendChild(audio);
-
-    return document.querySelector('.page__player');
-}
 
 function changeActiveSongMark(activeSong, lengthSongs, direction = 'next') {
     let current = activeSong;
@@ -143,7 +163,6 @@ function changeActiveSongMark(activeSong, lengthSongs, direction = 'next') {
     return current;
 }
 
-// draw list music songs
 function drawMusicList(playListMusic, musicList) {
     let stringOut = ''
 
@@ -156,18 +175,3 @@ function drawMusicList(playListMusic, musicList) {
 
 musicPlayer();
 
-
-// var muteButton = document.getElementById("muteButton");
-// muteButton.addEventListener("click", muter);
-// function muter() {
-//     if (soundVolume.value == 0) {
-//         player.volume(restoreValue);
-//         soundVolume.value = restoreValue;
-//         muteButton.style.opacity = 1;
-//     } else {
-//         player.volume(0);
-//         restoreValue = soundVolume.value;
-//         soundVolume.value = 0;
-//         muteButton.style.opacity = 0.4;
-//     }
-// }
