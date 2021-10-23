@@ -3,13 +3,14 @@ const settingsFrm = document.querySelector('.settings__form');
 const settingsClose = document.querySelector('.settings__form-close');
 
 settingsBtn.addEventListener('click', function (e) {
-    settingsFrm.classList.remove('settings__form__no');
-    settingsFrm.classList.add('settings__form__yes');
+    settingsFrm.style.display = "flex";
+    settingsFrm.classList.remove('invisible');
+    settingsFrm.classList.add('visible');
 })
 
 settingsClose.addEventListener('click', function (e) {
-    settingsFrm.classList.remove('settings__form__yes');
-    settingsFrm.classList.add('settings__form__no');
+    settingsFrm.classList.remove('visible');
+    settingsFrm.classList.add('invisible');
 })
 
 document.querySelector('#en').addEventListener("click", function (e) {
@@ -70,7 +71,7 @@ function changeTag() {
     changeImg();
 }
 
-document.querySelector('.settings__form-close').addEventListener('click', function (e) {
-    settingsFrm.classList.remove('settings__form__yes');
-    settingsFrm.classList.add('settings__form__no');
-})
+// document.querySelector('.settings__form-close').addEventListener('click', function (e) {
+//     settingsFrm.classList.remove('visible');
+//     settingsFrm.classList.add('visible');
+// })

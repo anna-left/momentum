@@ -38,6 +38,13 @@ function translationSettings() {
         userName.placeholder = "[Enter name]";
         document.querySelector('#tag').placeholder = "tag";
 
+        const tLinks = ['Links', '+ Add new link', 'New link', 'name', 'link', 'ok', 'cancel'];
+        for (let i = 0; i < tLinks.length; i++) {
+            const elForm = document.querySelector(`.l${i}`);
+            elForm.innerText = tLinks[i];
+        }
+
+
     } else {
         const arrSet = ['time', 'date', 'greeting', 'quote', 'weather', 'player'];
         const arrSetRu = ['время', 'дата', 'приветствие', 'цитата', 'погода', 'плеер'];
@@ -52,6 +59,12 @@ function translationSettings() {
         }
         userName.placeholder = "[Введите имя]";
         document.querySelector('#tag').placeholder = "тег";
+
+        const tLinks = ['Ссылки', '+ Новая ссылка', 'Новая ссылка', 'имя', 'ссылка', 'записать', 'отмена'];
+        for (let i = 0; i < tLinks.length; i++) {
+            const elForm = document.querySelector(`.l${i}`);
+            elForm.innerText = tLinks[i];
+        }
     }
 }
 
@@ -304,9 +317,21 @@ function getLocalStorage() {
         document.querySelector('#tag').value = localStorage.getItem('tag');
     }
 
+    linksObj.length = 0;
+    if (localStorage.getItem('links')) {
+        let jsonLinks = localStorage.getItem('links');
+        linksObj = JSON.parse(jsonLinks);
+    }
+    if (linksObj.length === 0) {
+        linksObj.push({ link: 'https://www.google.com/', name: 'google' });
+    }
+    for (let i = 0; i < linksObj.length; i++) {
+        addLine(linksObj[i].name, linksObj[i].link);
+    }
 }
 
 window.addEventListener('DOMContentLoaded', function e() {
+    // linksFrm.style.display = "none";
     getLocalStorage();
     translationSettings();
     setCity();
@@ -326,7 +351,14 @@ window.addEventListener('DOMContentLoaded', function e() {
     }
     getObjQuotes();
 
-    settingsFrm.classList.add('settings__form__no');
+    settingsFrm.style.display = "none";
+    linksFrm.style.display = "none";
+    linksEnter.style.display = "none";
+
+    settingsFrm.classList.add('invisible');
+    linksFrm.classList.add('invisible');
+    linksEnter.classList.add('invisible');
+
 });
 
 function saveLocalStorage() {

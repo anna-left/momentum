@@ -7,6 +7,7 @@
   <link href="assets/favicon.ico" rel="shortcut icon" />
   <link rel="stylesheet" href="css/owfont-regular.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- <link rel="stylesheet" href="css/player.css" /> -->
   <title>momentum</title>
 </head>
 
@@ -14,9 +15,31 @@
   <header class="header">
     <div class="player" id="player">
       <div class="player-controls">
-        <button class="play-prev player-icon"></button>
-        <button class="play player-icon"></button>
-        <button class="play-next player-icon"></button>
+        <div class="player-controls-btns">
+          <button class="play-prev player-icon"></button>
+          <button class="play player-icon"></button>
+          <button class="play-next player-icon"></button>
+        </div>
+        <div class="volume-player">
+          <div id="muteButton" class="muteButton player-icon muteBtn">
+
+          </div>
+          <input id="soundVolume" type="range" min="0" max="1" step="0.01">
+        </div>
+        <div class="progress">
+          <div class="progress-container">
+            <h4 class="progress-title"></h4>
+            <div class="duration-player">
+              <div id="progress" style="width: 2.59353%;"></div>
+            </div>
+          </div>
+
+          <div class="duration-timer">
+            <div id="timer" class="timer-header">0:05</div>
+            <div id="duration">3:25</div>
+          </div>
+        </div>
+
       </div>
       <ul class="play-list"></ul>
     </div>
@@ -52,7 +75,10 @@
       <span class="greeting"></span>
       <input type="text" class="name" placeholder="[Enter name]" />
     </div>
-    <button class="settings__button"></button>
+    <div class="buttons">
+      <button class="settings__button"></button>
+      <button class="links__form-btn"></button>
+    </div>
   </main>
 
   <footer class="footer">
@@ -81,6 +107,7 @@
   </footer>
 
   <div class="settings__form" action="#">
+
     <div class="settings__form-title">
       <h3 class="t0">
         Settings
@@ -158,12 +185,51 @@
 
   </div>
 
-  <script type="text/javascript" src="./quotes_en.json"></script>
+  <div class="links__form">
+    <div class="links__form-wrap">
+      <div class="links__form-container">
+        <div class="settings__form-title">
+          <h4 class="l0">Links</h4>
+          <button class="links__form-close"></button>
+        </div>
+        <ol class="links__form-list">
+          <!-- <li class="links__form-li">
+            <img height="16" width="16" src='http://www.google.com/s2/favicons?domain=www.google.com' />
+            <a href="https://www.google.com/" target="_blank" class="links__form-list-li-name">google</a>
+            <div class="links__form-add-del"></div>
+          </li> -->
+
+        </ol>
+        <button class="links__form-add">
+          <h4 class="l1" style="text-align: left">+ Add new link</h4>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <div class="links__form-enter">
+    <div class="settings__form-title">
+      <h3 class="l2">New link</h3>
+    </div>
+    <h4 class="links__form-enter-title l3">name</h4>
+    <input type="text" id="links__name">
+    <h4 class="links__form-enter-title l4">link</h4>
+    <input type="text" id="links__link">
+    <div class="links__buttons">
+      <button class="links__enter-ok l5">ok</button>
+      <button class="links__enter-cancel l6">cancel</button>
+
+    </div>
+
+  </div>
+
+  <!-- <script type="text/javascript" src="./quotes_en.json"></script> -->
   <script type="text/javascript" src="./quotes_ru.json"></script>
   <script src="./scripts/clock.js"></script>
   <script src="./scripts/quotes.js"></script>
   <script src="./scripts/player.js"></script>
   <script src="./scripts/settings.js"></script>
+  <script src="./scripts/links.js"></script>
 </body>
 
 </html>
