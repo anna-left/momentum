@@ -26,14 +26,17 @@ function musicPlayer() {
     drawMusicList(playListMusic, pageListSongs);
 
     listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs);
+
 }
 
-// draw list music songs
 function listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs) {
     const playBtn = playerBtnsParrent.querySelector('.play');
     const pagePlayer = addMusicPlayer(playListMusic[0]);
+
     const lengthSongs = playListMusic.length;
     let activeSong = 0;
+
+    document.querySelector(".progress-title").innerText = playListMusic[activeSong].title;
 
     playerBtnsParrent.addEventListener('click', (e) => {
         let target = e.target;
@@ -42,12 +45,24 @@ function listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs) {
 
         if (target.classList.contains('play-prev')) {
             activeSong = changeActiveSongMark(activeSong, lengthSongs, 'prev');
+            document.querySelector(".progress-title").innerText = playListMusic[activeSong].title;
         };
 
         if (target.classList.contains('play-next')) {
             activeSong = changeActiveSongMark(activeSong, lengthSongs, 'next');
+            document.querySelector(".progress-title").innerText = playListMusic[activeSong].title;
         };
 
+        if (target.classList.contains('muteBtn')) {
+            if (pagePlayer.volume > 0) {
+                curVolume = pagePlayer.volume;
+                pagePlayer.volume = 0;
+                document.getElementById("muteButton").style.backgroundImage = "url(./assets/svg/mute__stop.svg)"
+            } else {
+                pagePlayer.volume = curVolume;
+                document.getElementById("muteButton").style.backgroundImage = "url(./assets/svg/mute.svg)"
+            }
+        };
 
         if (target.classList.contains('pause')) {
             playBtn.classList.remove('pause');
@@ -56,8 +71,39 @@ function listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs) {
             playBtn.classList.add('pause');
             playSong(activeSong, playListMusic, pagePlayer, pageListSongs, playBtn);
         };
+
+
     })
 }
+
+
+
+
+
+// const playerBtnsParrent = player.querySelector('.player-controls');
+// const pageListSongs = player.querySelector('.play-list');
+
+// drawMusicList(playListMusic, pageListSongs);
+
+// listenerBtsPlayer(playerBtnsParrent, playListMusic, pageListSongs);
+
+// const muteСontrol = document.querySelector('.muteButton');
+// muteСontrol.addEventListener('click', toggleMute);
+
+// let curVolume = pagePlayer.volume;
+// function toggleMute() {
+//     if (video.volume > 0) {
+//         curVolume = pagePlayer.volume;
+//         pagePlayer.volume = 0;
+//         сrossMute();
+//     } else {
+//         pagePlayer.volume = curVolume;
+//         сrossMuteNo();
+//     }
+
+// }
+
+
 
 // play song and add active class in list songs
 function playSong(activeSong, playListMusic, pagePlayer, pageListSongs) {
@@ -109,3 +155,19 @@ function drawMusicList(playListMusic, musicList) {
 }
 
 musicPlayer();
+
+
+// var muteButton = document.getElementById("muteButton");
+// muteButton.addEventListener("click", muter);
+// function muter() {
+//     if (soundVolume.value == 0) {
+//         player.volume(restoreValue);
+//         soundVolume.value = restoreValue;
+//         muteButton.style.opacity = 1;
+//     } else {
+//         player.volume(0);
+//         restoreValue = soundVolume.value;
+//         soundVolume.value = 0;
+//         muteButton.style.opacity = 0.4;
+//     }
+// }
