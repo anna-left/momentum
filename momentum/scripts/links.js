@@ -29,7 +29,7 @@ function addLine(name, link) {
     li.classList.add('links__form-li');
 
     var img = document.createElement("img");
-    img.src = `http://www.google.com/s2/favicons?domain=${link}`;
+    img.src = `https://www.google.com/s2/favicons?domain=${link}`;
     img.width = '16';
     img.height = '16';
 
