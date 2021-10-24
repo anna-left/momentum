@@ -377,3 +377,10 @@ function saveLocalStorage() {
     localStorage.setItem('form__weather', document.querySelector('#form__weather').checked);
     localStorage.setItem('form__player', document.querySelector('#form__player').checked);
 }
+
+console.log(`
+Score: 150 / 150
+Выполнены все пункты, кроме одного: в аудиоплеере можно запустить и остановить проигрывания трека кликом по кнопке Play/Pause рядом с ним в плейлисте.
+По форме для кросс-чека получается 163 – 3 = 160 баллов.
+Дополнительный функционал – хранилище ссылок пользователя.
+`);
