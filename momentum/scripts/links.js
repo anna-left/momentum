@@ -1,4 +1,3 @@
-// const links = [{ fav:, link:'chrome-search://local-ntp/local-ntp.html'}]
 const linksBtn = document.querySelector('.links__form-btn');
 const linksFrm = document.querySelector('.links__form');
 const linksClose = document.querySelector('.links__form-close');
@@ -92,7 +91,7 @@ linksAdd.addEventListener('click', function (e) {
     document.querySelector('#links__link').value = '';
     makeInvisible(linksFrm);
     setTimeout(function () { makeVisible(linksEnter) }, 1000);
-    // makeVisible(linksEnter);
+
 })
 
 // форма add - ок
@@ -124,8 +123,3 @@ linksCancel.addEventListener('click', function (e) {
     makeVisible(linksFrm);
 })
 
-// linksAdd.addEventListener('click', function (e) {
-//     linksEnter.style.display = "flex";
-//     linksEnter.classList.remove('invisible');
-//     linksEnter.classList.add('visible');
-// })
